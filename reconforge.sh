@@ -1,21 +1,19 @@
 #!/bin/bash
 
 # ==============================================================================
-# FINAL RECONNAISSANCE SCRIPT (v19.0 - Consolidated & Complete Edition)
+# FINAL RECONNAISSANCE SCRIPT (v19.2 - Enhanced Banner)
 #
 # Author: Aaron
-# Date: 2025-08-05
+# Date: 2025-08-06
 #
 # Description: A professional-grade, single-file reconnaissance script.
 #              This version consolidates all prior features, ensuring robust
 #              error handling, timeouts, and a complete summary report that
 #              includes all collected data (Whois, Sitemap, etc.).
 #
-# Changelog (v19.0):
-#    - ADDED: Whois lookup results are now included in the final report.
-#    - ADDED: Sitemap.xml contents are now included in the final report.
-#    - ENHANCED: Report will use `xmllint` to pretty-print XML if available.
-#    - CONSOLIDATED: All features from v17 and v18 are now present.
+# Changelog (v19.2):
+#     - ENHANCED: Banner visuals with a new color scheme and professional layout.
+#     - MODIFIED: Author credit line for a more professional tone.
 # ==============================================================================
 
 # --- Graceful Cleanup on Exit ---
@@ -46,24 +44,42 @@ log_success(){ [ "$SILENT_MODE" = false ] && echo -e "[\e[32m+\e[0m] \e[1m$1\e[0
 log_error()  { [ "$SILENT_MODE" = false ] && echo -e "[\e[31m-\e[0m] \e[1m$1\e[0m" >&2; }
 log_warn()   { [ "$SILENT_MODE" = false ] && echo -e "[\e[33m!\e[0m] \e[1m$1\e[0m"; }
 
+# --- Banner Function ---
+show_banner() {
+    if [ "$SILENT_MODE" = false ]; then
+        # Use a brighter color like bright cyan for better visibility
+        local color='\e[96m'
+        local nc='\e[0m' # No Color
+
+        echo -e "${color}"
+        figlet -f slant "ReconForge"
+        echo -e "    +---------------------------------------+"
+        echo -e "    |          Author: Aaron              |"
+        echo -e "    |   Recon Script v19.2 (Enhanced)     |"
+        echo -e "    +---------------------------------------+"
+        echo -e "${nc}"
+    fi
+}
+
+
 # --- Usage Information ---
 show_usage() {
   echo "Usage: $0 -d <domain_or_ip> [OPTIONS]"
   echo ""
   echo "Required:"
-  echo "  -d <domain_or_ip>     : The target domain or IP address."
+  echo "  -d <domain_or_ip>      : The target domain or IP address."
   echo ""
   echo "Scan Modes (Choose one, default is Full):"
-  echo "  -l                    : LITE scan (Fast service scan, no deep scripts)."
-  echo "  -m                    : MINIMAL scan (Port discovery only)."
+  echo "  -l                   : LITE scan (Fast service scan, no deep scripts)."
+  echo "  -m                   : MINIMAL scan (Port discovery only)."
   echo ""
   echo "Options:"
-  echo "  -h, --help            : Show this help message."
-  echo "  -s                    : Enable subdomain enumeration."
-  echo "  -w <path>             : Path to a custom wordlist for directory fuzzing."
-  echo "  -sw <path>            : Path to a custom wordlist for subdomain fuzzing."
-  echo "  --silent              : Suppress console output. All results are saved to files."
-  echo "  --dry-run             : Preview all commands without executing them."
+  echo "  -h, --help           : Show this help message."
+  echo "  -s                   : Enable subdomain enumeration."
+  echo "  -w <path>            : Path to a custom wordlist for directory fuzzing."
+  echo "  -sw <path>           : Path to a custom wordlist for subdomain fuzzing."
+  echo "  --silent             : Suppress console output. All results are saved to files."
+  echo "  --dry-run            : Preview all commands without executing them."
   exit 0
 }
 
@@ -76,16 +92,16 @@ SUBDOMAIN_WORDLIST="$DEFAULT_SUBDOMAIN_WORDLIST_PATH"
 
 while [[ "$1" != "" ]]; do
     case $1 in
-        -d )                    shift; TARGET=$1 ;;
-        -l )                    SCAN_MODE="LITE" ;;
-        -m )                    SCAN_MODE="MINIMAL" ;;
-        -s )                    DO_SUBDOMAIN_SCAN=true ;;
-        -w )                    shift; DIR_WORDLIST=$1 ;;
-        -sw )                   shift; SUBDOMAIN_WORDLIST=$1 ;;
-        --silent )              SILENT_MODE=true ;;
-        --dry-run )             DRY_RUN=true ;;
-        -h | --help )           show_usage ;;
-        * )                     log_error "Invalid option: $1"; show_usage; exit 1 ;;
+        -d )                   shift; TARGET=$1 ;;
+        -l )                   SCAN_MODE="LITE" ;;
+        -m )                   SCAN_MODE="MINIMAL" ;;
+        -s )                   DO_SUBDOMAIN_SCAN=true ;;
+        -w )                   shift; DIR_WORDLIST=$1 ;;
+        -sw )                  shift; SUBDOMAIN_WORDLIST=$1 ;;
+        --silent )             SILENT_MODE=true ;;
+        --dry-run )            DRY_RUN=true ;;
+        -h | --help )          show_usage ;;
+        * )                    log_error "Invalid option: $1"; show_usage; exit 1 ;;
     esac
     shift
 done
@@ -144,7 +160,8 @@ execute() {
 check_dependencies() {
     log "Verifying required tools..."
     # xmllint is optional for pretty-printing, not a hard requirement.
-    REQUIRED_TOOLS=(nmap rustscan ffuf whatweb getent tree ping curl whois jq pandoc openssl)
+    # Added figlet for the banner
+    REQUIRED_TOOLS=(nmap rustscan ffuf whatweb getent tree ping curl whois jq pandoc openssl figlet)
     for tool in "${REQUIRED_TOOLS[@]}"; do
         if ! command -v "$tool" &> /dev/null; then
             log_error "'$tool' is required but not installed. Please install it."
@@ -421,7 +438,7 @@ generate_summary_report() {
              echo "$sub_list"
              echo '```'
         else
-            echo "_No subdomains discovered or scan not performed._"
+             echo "_No subdomains discovered or scan not performed._"
         fi
     } > "$SUMMARY_MD"
 
@@ -436,13 +453,15 @@ generate_summary_report() {
 # --- Main Execution Flow ---
 main() {
     [ "$SILENT_MODE" = false ] && clear
-    log "Reconnaissance Script v19.0 - Consolidated & Complete Edition"
+    
+    check_dependencies
+    show_banner
+
     log "Target: $TARGET | Mode: $SCAN_MODE"
     if [ "$DRY_RUN" == true ]; then log_warn "DRY RUN MODE IS ENABLED"; fi
     if [ "$SILENT_MODE" == true ]; then log_warn "SILENT MODE IS ENABLED"; fi
     log "------------------------------------------------------------"
 
-    check_dependencies
     check_wordlists
     resolve_target
 
@@ -461,9 +480,9 @@ main() {
 
     log "------------------------------------------------------------"
     generate_summary_report
-    log_success "Reconnaissance mission complete!"
+    log_success "Reconnaissance mission complete! 🚀"
     log "All output saved to: $OUTPUT_DIR"
-    log "View the HTML report at: ${OUTPUT_DIR}/REPORT.html"
+    log "View the HTML report at: file://${OUTPUT_DIR}/REPORT.html"
     log "A full command log is available at: ${LOG_FILE}"
     execute "tree \"$OUTPUT_DIR\""
 }
