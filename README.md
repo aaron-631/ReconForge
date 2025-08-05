@@ -41,7 +41,7 @@
 
 **ReconForge** isn't just another recon script. It's a **battle-tested**, **modular**, and **sharp-edged reconnaissance toolkit** forged for **CTF warriors**, **bug bounty hunters**, and **real-world pentesters**.
 
-From passive WHOIS sweeps to precision-tuned FFUF fuzzing, ReconForge is built to **dig deep, stay organized, and never miss a surface**. Whether you're mapping a target for a red team op or poking at a box during a CTF finals at 2 AM — this toolkit has your back.
+From passive WHOIS sweeps to precision-tuned FFUF fuzzing, ReconForge is built to **dig deep, stay organized, and never miss a surface**. Whether you're mapping a target for a red team op or poking at a box during a CTF finals at 2 AM -this toolkit has your back.
 
 ---
 
@@ -227,9 +227,9 @@ recon_results/
 
 Every scan generates:
 
-* `SUMMARY.md` — human-readable breakdown
-* `REPORT.html` — styled report for quick browsing/sharing
-* `scan.log` — raw execution + output history
+* `SUMMARY.md` -human-readable breakdown
+* `REPORT.html` -styled report for quick browsing/sharing
+* `scan.log` -raw execution + output history
 * Tool outputs stored per module (`nmap/`, `web/`, etc.)
 * `jq`-powered JSON summaries for integrations or scripts
 
@@ -303,10 +303,10 @@ Got ideas? Found a bug? Want to make it even better?
 
   * GitHub: [@aaron-631](https://github.com/aaron-631)
   * Email: [your.email@domain.com](mailto:your.email@domain.com)
-
 ---
 
-**Built with discipline, curiosity, and a bit of caffeine.**
-— **Aaron | ReconForge v19.0 | 2025**
+> 🧠 **Built with discipline, curiosity, and just the right dose of caffeine.**
 
-
+<p align="right">
+  - Aaron • <strong>ReconForge v2.0</strong> • 2025
+</p>
