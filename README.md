@@ -32,6 +32,16 @@ From passive WHOIS sweeps to precision-tuned FFUF fuzzing, ReconForge is built t
 
 ---
 
+## 📸 Screenshots
+
+### 🔧 Terminal Output (ReconForge in Action)
+![Terminal Demo](assets/terminal_demo.png)
+
+### 📄 Generated Report (HTML View)
+![Report Preview](assets/report_preview.png)
+
+---
+
 ## 🚀 Features at a Glance
 
 ### 🧭 Passive Recon
