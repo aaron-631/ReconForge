@@ -6,6 +6,24 @@
 
 ---
 
+## 📚 Table of Contents
+
+* [Overview](#-overview)
+* [Features at a Glance](#-features-at-a-glance)
+* [Advanced & Unique Features](#-advanced--unique-features)
+* [Output Structure](#-output-structure)
+* [Installation](#-installation)
+* [How to Use](#-how-to-use)
+* [Reporting & Logs](#-reporting--logs)
+* [Tools Integrated](#-tools-integrated)
+* [Suggested Workflow](#-suggested-workflow)
+* [Tested On](#-tested-on)
+* [License](#-license)
+* [Legal Disclaimer](#-legal-disclaimer)
+* [Feedback / Contributions](#-feedback--contributions)
+
+---
+
 ## 🌐 Overview
 
 **ReconForge** isn't just another recon script. It's a **battle-tested**, **modular**, and **sharp-edged reconnaissance toolkit** forged for **CTF warriors**, **bug bounty hunters**, and **real-world pentesters**.
@@ -19,7 +37,7 @@ From passive WHOIS sweeps to precision-tuned FFUF fuzzing, ReconForge is built t
 ### 🧭 Passive Recon
 
 * WHOIS lookup (raw + parsed)
-* DNS info via `dig`, `nslookup`, `dnsutils`
+* DNS info via `dig`, `nslookup`
 * Preserves **raw WHOIS dumps** for deeper offline parsing
 
 ### ⚡ Active Network Scanning
@@ -55,19 +73,17 @@ From passive WHOIS sweeps to precision-tuned FFUF fuzzing, ReconForge is built t
 
 ## 🎯 Advanced & Unique Features
 
-ReconForge v19.0 isn't just a bash wrapper — it's a thoughtfully engineered recon assistant built for high signal, low noise, and operational precision. This section highlights the features that make it **stand apart from typical recon scripts**:
-
 ### 🧠 Intelligent FFUF Calibration
 
 Before directory or subdomain fuzzing, ReconForge probes a random, likely non-existent URL path. If the target returns a non-standard 404 or wildcard DNS is detected, it auto-tunes FFUF filters using response code (`-fc`), response size (`-fs`), and word count (`-fw`). This **minimizes false positives** and improves scan accuracy.
 
 ### 🎭 Randomized User-Agent Rotation
 
-To reduce detection by WAFs and basic rate-limiting systems, ReconForge rotates through a curated list of realistic User-Agent strings (e.g., Chrome, Firefox, Safari) for tools like `curl`, `ffuf`, and `WhatWeb`. This adds stealth and blends enumeration traffic into normal web logs.
+To reduce detection by WAFs and basic rate-limiting systems, ReconForge rotates through a curated list of realistic User-Agent strings (e.g., Chrome, Firefox, Safari) for tools like `curl`, `ffuf`, and `WhatWeb`.
 
-### 📜 Structured JSON Parsing with jq
+### 📜 Structured JSON Parsing with `jq`
 
-All `ffuf` results are captured in structured JSON format and parsed using `jq`. This enables:
+All `ffuf` results are captured in structured JSON format and parsed using `jq`, enabling:
 
 * Clean reporting of discovered directories and subdomains
 * Easy integration with external analysis pipelines or dashboards
@@ -75,11 +91,11 @@ All `ffuf` results are captured in structured JSON format and parsed using `jq`.
 
 ### 🧬 Wildcard DNS Auto-Detection
 
-Before launching subdomain brute-forcing, the script generates a unique random subdomain and checks if the target resolves it. If a response is received, **wildcard DNS behavior is detected**, and the scan is skipped to avoid invalid results — saving time and avoiding noise.
+Before launching subdomain brute-forcing, the script generates a unique random subdomain and checks if the target resolves it. If a response is received, **wildcard DNS behavior is detected**, and the scan is skipped to avoid invalid results.
 
 ### 🧪 Dry-Run Command Preview Mode
 
-With the `--dry-run` flag, you can preview **every command the script will execute** (including dynamic arguments) without running them. This is ideal for audits, testing, and reviewing how a scan will behave in different environments.
+With the `--dry-run` flag, you can preview **every command the script will execute** (including dynamic arguments) without running them.
 
 ### 📊 Dual-Format Reporting (Markdown + HTML)
 
@@ -87,7 +103,6 @@ ReconForge generates reports in both human-readable `Markdown` and styled `HTML`
 
 * `SUMMARY.md`: Clear breakdown of open ports, whois info, web technologies, sitemap contents, and more.
 * `REPORT.html`: Automatically created using `pandoc` with a clean dark theme via Water.css.
-* Bonus: If `xmllint` is available, the `sitemap.xml` is auto-pretty-printed inside the HTML report.
 
 ### 🗂️ Organized Output Structure with Timestamps
 
@@ -95,11 +110,10 @@ Every scan creates a timestamped directory (`recon_results/target.com-YYYY-MM-DD
 
 * `nmap/` (port scans)
 * `web/` (HTTP fingerprints, FFUF results, robots.txt, sitemap.xml)
+* `subdomains/` (subdomain enumeration results)
 * `passive/` (WHOIS data)
 * `scan.log` (all commands executed)
 * `SUMMARY.md` & `REPORT.html`
-  This makes recon data clean, portable, and easy to archive or compare across multiple sessions.
-
 
 ---
 
@@ -133,9 +147,9 @@ chmod +x recon.sh
 ### 2️⃣ Install Required Tools
 
 ```bash
-sudo apt update && sudo apt install -y \
-  nmap rustscan ffuf whatweb jq curl whois \
-  tree netcat telnet dig dnsutils pandoc \
+sudo apt update && sudo apt install -y \\
+  nmap rustscan ffuf whatweb jq curl whois \\
+  tree netcat telnet dig dnsutils pandoc \\
   libxml2-utils gnupg lsof unzip
 ```
 
@@ -274,6 +288,4 @@ Got ideas? Found a bug? Want to make it even better?
 **Built with discipline, curiosity, and a bit of caffeine.**
 — **Aaron | ReconForge v19.0 | 2025**
 
----
 
-Let me know if you want a `.md` file version or want this published to GitHub with push instructions.
