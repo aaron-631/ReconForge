@@ -173,7 +173,7 @@ sudo apt update && sudo apt install -y \
 ### 🔧 Basic Syntax
 
 ```bash
-./recon.sh -d <domain_or_ip> [options]
+./reconforge.sh -d <domain_or_ip> [options]
 ```
 
 ### ✅ Required Argument
