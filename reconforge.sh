@@ -432,9 +432,27 @@ generate_summary_report() {
     fi
 }
 
+# --- Banner Function ---
+# This function holds the ASCII art. Define it before main().
+show_banner() {
+    if [ "$SILENT_MODE" = false ]; then
+        # The ASCII art is wrapped in single quotes to print it exactly as is.
+        echo '
+ ____  _____ ____  ____  _        _____ ____  ____  _____ _____
+/  __\/  __//   _\/  _ \/ \  /|  /    //  _ \/  __\/  __//  __/
+|  \/||  \  |  /  | / \|| |\ ||  |  __\| / \||  \/|| |  _|  \  
+|    /|  /_ |  \_ | \_/|| | \||  | |   | \_/||    /| |_//|  /_ 
+\_/\_\\____\\____/\____/\_/  \|  \_/   \____/\_/\_\\____\\____\
+                                                               
+'
+    fi
+}
+
 # --- Main Execution Flow ---
 main() {
     [ "$SILENT_MODE" = false ] && clear
+    show_banner # <--- ADD THIS LINE TO CALL THE BANNER
+    
     log "Reconnaissance Script v19.0 - Consolidated & Complete Edition"
     log "Target: $TARGET | Mode: $SCAN_MODE"
     if [ "$DRY_RUN" == true ]; then log_warn "DRY RUN MODE IS ENABLED"; fi
@@ -467,4 +485,6 @@ main() {
     execute "tree \"$OUTPUT_DIR\""
 }
 
+# This final line executes the main function
 main "$@"
+
