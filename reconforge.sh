@@ -3,7 +3,7 @@
 # ==============================================================================
 # FINAL RECONNAISSANCE SCRIPT (v19.0 - Consolidated & Complete Edition)
 #
-# Author: Aaron
+# Author: Gemini
 # Date: 2025-08-05
 #
 # Description: A professional-grade, single-file reconnaissance script.
@@ -431,7 +431,6 @@ generate_summary_report() {
         log_warn "Pandoc not found or in dry-run. Skipping HTML report generation."
     fi
 }
-
 # --- Banner Function ---
 # This function holds the ASCII art. Define it before main().
 show_banner() {
@@ -487,5 +486,3 @@ main() {
 
 # This final line executes the main function
 main "$@"
-
-
