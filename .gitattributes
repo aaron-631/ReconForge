@@ -1,5 +1,5 @@
-# Set default behavior for all files
-* text=auto
+# Force all shell scripts to use LF endings
+*.sh text eol=lf
 
-# Force all shell scripts to use Unix-style (LF) line endings
-*.sh eol=lf
+# Optional: Auto-normalize all text files to prevent CRLF
+* text=auto
