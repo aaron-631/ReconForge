@@ -1,53 +1,63 @@
-# 🛡️ ReconForge - World-Class Network & Web Reconnaissance Toolkit
+# 🛡️ ReconForge — Elite Network & Web Recon Toolkit
 
-**Version:** 19.0 – Consolidated & Complete Edition
-**Author:** [Gemini](https://github.com/yourusername)
+**Version:** 19.0 — Consolidated & Complete Edition
+**Author:** [Aaron](https://github.com/aaron-631)
 **License:** MIT
 
 ---
 
 ## 🌐 Overview
 
-**ReconForge** is a professional-grade, modular, and extensible **network and web reconnaissance** Bash toolkit. Built for both **Capture The Flag (CTF)** challenges and **real-world penetration testing**, it combines industry-standard tools with intelligent logic and reporting.
+**ReconForge** isn't just another recon script. It's a **battle-tested**, **modular**, and **sharp-edged reconnaissance toolkit** forged for **CTF warriors**, **bug bounty hunters**, and **real-world pentesters**.
 
-ReconForge goes beyond a simple recon script — it's a full-fledged scanning framework that supports passive + active recon, intelligent subdomain fuzzing, robust error handling, rich HTML/Markdown reports, and precision-tuned directory brute-forcing.
-
----
-
-## 🚀 Key Features
-
-* 🔍 **Passive Reconnaissance**
-
-  * WHOIS, DNS records, dig, nslookup
-  * Full raw WHOIS output preservation
-* ⚡ **Active Network Scanning**
-
-  * Smart port detection using `rustscan`
-  * Deep service enumeration using `nmap`
-* 🌐 **Web Enumeration**
-
-  * `WhatWeb`, `FFUF`, `robots.txt`, `sitemap.xml`, HTTP headers, etc.
-  * Subdomain scanning with custom or default wordlists
-  * Auto-filtering and directory brute-force calibration
-* 📊 **Beautiful Reporting**
-
-  * Markdown + HTML reports using `pandoc`
-  * JSON + styled logs via `jq`
-* 🔁 **Flexible Modes**
-
-  * Silent Mode, Dry-Run Preview, Minimal Scan, Lite Mode
-* 🛡️ **Error-Handled, Modular, and Clean**
-
-  * Graceful exits on error/timeouts
-  * Clear folder hierarchy for each scan
+From passive WHOIS sweeps to precision-tuned FFUF fuzzing, ReconForge is built to **dig deep, stay organized, and never miss a surface**. Whether you're mapping a target for a red team op or poking at a box during a CTF finals at 2 AM — this toolkit has your back.
 
 ---
 
-## 📁 Output Directory Structure
+## 🚀 Features at a Glance
+
+### 🧭 Passive Recon
+
+* WHOIS lookup (raw + parsed)
+* DNS info via `dig`, `nslookup`, `dnsutils`
+* Preserves **raw WHOIS dumps** for deeper offline parsing
+
+### ⚡ Active Network Scanning
+
+* 🔥 Blazing fast port detection via `rustscan`
+* 🔍 Deep service enumeration with `nmap`
+
+### 🌐 Web Enumeration
+
+* Web fingerprinting with `WhatWeb`
+* Subdomain brute-forcing (custom/default wordlists)
+* `robots.txt`, `sitemap.xml`, HTTP headers, and more
+* Calibrated and **auto-filtered** directory brute-force via `ffuf`
+
+### 📊 Beautiful Reporting
+
+* Generates clean **Markdown + HTML reports** with `pandoc`
+* Structured logs + machine-readable JSON via `jq`
+
+### 🛠️ Flexible Scan Modes
+
+* Silent Mode (no noise)
+* Dry-run Preview (see what will run)
+* Lite Mode (skip heavy modules)
+* Minimal Mode (just open ports)
+
+### 🔒 Clean, Modular, and Error-Handled
+
+* Smart timeout handling, graceful exits
+* Structured output folders for easy archival and collaboration
+
+---
+
+## 📁 Output Structure
 
 ```
 recon_results/
-├── example.com-2025-08-05/
+├── target.com-2025-08-05/
 │   ├── passive/
 │   ├── nmap/
 │   ├── web/
@@ -60,19 +70,17 @@ recon_results/
 
 ---
 
-## 🛠️ Installation Instructions (From Scratch)
+## 🧰 Installation
 
-### ✅ Step 1: Clone the Repository
+### 1️⃣ Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/reconforge.git
+git clone https://github.com/aaron-631/reconforge.git
 cd reconforge
 chmod +x recon.sh
 ```
 
-### ✅ Step 2: Install Dependencies
-
-ReconForge uses a wide range of tools. Install them using:
+### 2️⃣ Install Required Tools
 
 ```bash
 sudo apt update && sudo apt install -y \
@@ -81,46 +89,50 @@ sudo apt update && sudo apt install -y \
   libxml2-utils gnupg lsof unzip
 ```
 
+> 🧠 **Pro tip:** Install everything inside a fresh VM or container for maximum control.
+
 ---
 
-## ⚙️ Usage Instructions
+## ⚙️ How to Use
 
-### 📌 Basic Syntax
+### 🔧 Basic Syntax
 
 ```bash
 ./recon.sh -d <domain_or_ip> [options]
 ```
 
-### 🔧 Required Argument:
+### ✅ Required Argument
 
-* `-d <target>`: Target IP or domain (e.g., `example.com` or `192.168.1.1`)
+| Flag          | Description                                          |
+| ------------- | ---------------------------------------------------- |
+| `-d <target>` | Target IP or domain (e.g. `example.com`, `10.0.0.1`) |
 
-### 🔀 Modes & Options:
+### 🔀 Optional Modes & Flags
 
-| Flag         | Description                               |
-| ------------ | ----------------------------------------- |
-| `-l`         | Lite Scan (skip web enum)                 |
-| `-m`         | Minimal Scan (ports only)                 |
-| `-s`         | Enable subdomain enumeration              |
-| `--silent`   | Run silently with minimal terminal output |
-| `--dry-run`  | Show commands without execution           |
-| `-w <file>`  | Use custom wordlist for directory fuzzing |
-| `-sw <file>` | Use custom wordlist for subdomain fuzzing |
-| `--no-html`  | Skip HTML report generation               |
+| Flag         | Description                           |
+| ------------ | ------------------------------------- |
+| `-s`         | Enable subdomain enumeration          |
+| `-l`         | Lite scan (skips web modules)         |
+| `-m`         | Minimal scan (just ports)             |
+| `--dry-run`  | Preview the full command flow         |
+| `--silent`   | Silent terminal mode (minimal output) |
+| `-w <file>`  | Custom wordlist for directory fuzzing |
+| `-sw <file>` | Custom wordlist for subdomain fuzzing |
+| `--no-html`  | Skip HTML report generation           |
 
-### 📥 Example Commands:
+### 🧪 Examples
 
 ```bash
-# Full Scan
+# Full recon with subdomains
 ./recon.sh -d example.com -s
 
-# Scan with custom directory wordlist
-./recon.sh -d example.com -w /usr/share/wordlists/dirbuster.txt
+# Use custom wordlist for directory fuzzing
+./recon.sh -d example.com -w ~/lists/common.txt
 
-# Dry Run Preview
+# Dry-run to preview everything
 ./recon.sh -d example.com --dry-run
 
-# Minimal port scan only
+# Minimal port scan
 ./recon.sh -d 192.168.0.101 -m
 ```
 
@@ -128,95 +140,90 @@ sudo apt update && sudo apt install -y \
 
 ## 📊 Reporting & Logs
 
-* Markdown and HTML reports are saved in each scan directory.
-* Logs include:
+Every scan generates:
 
-  * Raw tool outputs
-  * JSON formatted summaries
-  * Auto-generated `SUMMARY.md` + `REPORT.html`
-* Easy to browse, share, and archive.
-
----
-
-## 📦 Tool Integration Summary
-
-| Tool           | Purpose                           |
-| -------------- | --------------------------------- |
-| `nmap`         | Deep port/service scan            |
-| `rustscan`     | Fast port detection               |
-| `ffuf`         | Directory & subdomain brute-force |
-| `whatweb`      | Web tech fingerprinting           |
-| `whois`        | Passive info gathering            |
-| `jq`           | JSON processing and summaries     |
-| `pandoc`       | Report conversion to HTML         |
-| `dig/nslookup` | DNS enumeration                   |
-| `curl`         | HTTP probing                      |
+* `SUMMARY.md` — human-readable breakdown
+* `REPORT.html` — styled report for quick browsing/sharing
+* `scan.log` — raw execution + output history
+* Tool outputs stored per module (`nmap/`, `web/`, etc.)
+* `jq`-powered JSON summaries for integrations or scripts
 
 ---
 
-## 🧠 Example Workflow
+## 🔌 Tools Integrated
 
-1. Run a full recon scan:
+| Tool             | Function                           |
+| ---------------- | ---------------------------------- |
+| `nmap`           | Service detection + deep scans     |
+| `rustscan`       | Fast TCP port scanner              |
+| `ffuf`           | Fuzzing directories + subdomains   |
+| `whatweb`        | Web tech fingerprinting            |
+| `whois`          | WHOIS info gathering               |
+| `jq`             | JSON parsing + formatting          |
+| `pandoc`         | HTML/Markdown reporting            |
+| `dig`/`nslookup` | DNS record enumeration             |
+| `curl`           | HTTP header probing + quick checks |
+
+---
+
+## 🔁 Suggested Workflow
 
 ```bash
+# 1. Start a recon
 ./recon.sh -d target.com -s
-```
 
-2. Check results in:
+# 2. Open the output
+cd recon_results/target.com-2025-08-05/
 
-```bash
-recon_results/target.com-YYYY-MM-DD/
-```
-
-3. View the full summary:
-
-```bash
+# 3. Read the summary
 cat SUMMARY.md
-```
 
-4. Share or open the HTML report:
-
-```bash
+# 4. Open the report
 xdg-open REPORT.html
 ```
 
 ---
 
-## 🧪 Compatibility
+## 💻 Tested On
 
-Tested on:
+* ✅ Kali Linux
+* ✅ Parrot OS
+* ✅ Ubuntu 20.04 and above
 
-* Kali Linux
-* Parrot OS
-* Ubuntu 20.04+
-
-Supports both public targets and internal boxes.
+Works well for **both internal networks** and **public-facing apps**.
 
 ---
 
-## 📝 License
+## 📜 License
 
-This project is licensed under the **MIT License** – see the [LICENSE](./LICENSE) file for details.
-
----
-
-## ⚠️ Disclaimer
-
-This script is for **educational and authorized security testing only**. Unauthorized use against systems without permission is strictly prohibited and may be illegal.
-
-Use responsibly. Stay ethical.
+Licensed under the **MIT License**.
+Check the [LICENSE](./LICENSE) file for more details.
 
 ---
 
-## 📬 Contribute / Feedback
+## ⚠️ Legal Disclaimer
 
-Got suggestions, bugs, or feature requests?
-
-Open a GitHub Issue or Pull Request, or reach out via:
-
-* GitHub: [yourusername](https://github.com/yourusername)
-* Email: [your.email@domain.com](mailto:your.email@domain.com)
+> This script is meant strictly for **educational purposes** and **authorized penetration testing**.
+> **Do not** run this on systems you don’t own or have explicit permission to test. Unauthorized access is illegal.
 
 ---
 
-**Built with 💻 by Gemini | v19.0 - ReconForge | 2025**
+## 💬 Feedback / Contributions
+
+Got ideas? Found a bug? Want to make it even better?
+
+* Open an [Issue](https://github.com/aaron-631/reconforge/issues)
+* Submit a Pull Request
+* Reach out via:
+
+  * GitHub: [@aaron-631](https://github.com/aaron-631)
+  * Email: [your.email@domain.com](mailto:your.email@domain.com)
+
+---
+
+**Built with discipline, curiosity, and a bit of caffeine.**
+— **Aaron | ReconForge v19.0 | 2025**
+
+---
+
+Let me know if you want a `.md` file version or want this published to GitHub with push instructions.
