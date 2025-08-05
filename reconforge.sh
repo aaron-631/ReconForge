@@ -3,7 +3,7 @@
 # ==============================================================================
 # FINAL RECONNAISSANCE SCRIPT (v19.0 - Consolidated & Complete Edition)
 #
-# Author: Gemini
+# Author: Aaron
 # Date: 2025-08-05
 #
 # Description: A professional-grade, single-file reconnaissance script.
@@ -12,10 +12,10 @@
 #              includes all collected data (Whois, Sitemap, etc.).
 #
 # Changelog (v19.0):
-#   - ADDED: Whois lookup results are now included in the final report.
-#   - ADDED: Sitemap.xml contents are now included in the final report.
-#   - ENHANCED: Report will use `xmllint` to pretty-print XML if available.
-#   - CONSOLIDATED: All features from v17 and v18 are now present.
+#    - ADDED: Whois lookup results are now included in the final report.
+#    - ADDED: Sitemap.xml contents are now included in the final report.
+#    - ENHANCED: Report will use `xmllint` to pretty-print XML if available.
+#    - CONSOLIDATED: All features from v17 and v18 are now present.
 # ==============================================================================
 
 # --- Graceful Cleanup on Exit ---
@@ -76,16 +76,16 @@ SUBDOMAIN_WORDLIST="$DEFAULT_SUBDOMAIN_WORDLIST_PATH"
 
 while [[ "$1" != "" ]]; do
     case $1 in
-        -d )                   shift; TARGET=$1 ;;
-        -l )                   SCAN_MODE="LITE" ;;
-        -m )                   SCAN_MODE="MINIMAL" ;;
-        -s )                   DO_SUBDOMAIN_SCAN=true ;;
-        -w )                   shift; DIR_WORDLIST=$1 ;;
-        -sw )                  shift; SUBDOMAIN_WORDLIST=$1 ;;
-        --silent )             SILENT_MODE=true ;;
-        --dry-run )            DRY_RUN=true ;;
-        -h | --help )          show_usage ;;
-        * )                    log_error "Invalid option: $1"; show_usage; exit 1 ;;
+        -d )                    shift; TARGET=$1 ;;
+        -l )                    SCAN_MODE="LITE" ;;
+        -m )                    SCAN_MODE="MINIMAL" ;;
+        -s )                    DO_SUBDOMAIN_SCAN=true ;;
+        -w )                    shift; DIR_WORDLIST=$1 ;;
+        -sw )                   shift; SUBDOMAIN_WORDLIST=$1 ;;
+        --silent )              SILENT_MODE=true ;;
+        --dry-run )             DRY_RUN=true ;;
+        -h | --help )           show_usage ;;
+        * )                     log_error "Invalid option: $1"; show_usage; exit 1 ;;
     esac
     shift
 done
@@ -145,10 +145,10 @@ check_dependencies() {
     log "Verifying required tools..."
     # xmllint is optional for pretty-printing, not a hard requirement.
     REQUIRED_TOOLS=(nmap rustscan ffuf whatweb getent tree ping curl whois jq pandoc openssl)
-    all_found=true
     for tool in "${REQUIRED_TOOLS[@]}"; do
         if ! command -v "$tool" &> /dev/null; then
-            execute --fatal "log_error \"'$tool' is required but not installed. Please install it.\""
+            log_error "'$tool' is required but not installed. Please install it."
+            exit 1
         fi
     done
     log_success "All required tools are installed."
@@ -296,6 +296,7 @@ subdomain_enum() {
 
     log "Performing DNS wildcard check..."
     local random_sub="gemini-test-$(date +%s)"
+    # Check if a random subdomain resolves (non-zero response code from curl indicates it does)
     if [ "$DRY_RUN" == false ] && [[ $(curl --max-time $TIMEOUT_SECONDS -s -o /dev/null -w "%{http_code}" "http://${random_sub}.${TARGET}") -ne 000 ]]; then
         log_error "Wildcard DNS detected for *.$TARGET. Skipping subdomain FFUF scan."; return
     else
@@ -431,27 +432,10 @@ generate_summary_report() {
         log_warn "Pandoc not found or in dry-run. Skipping HTML report generation."
     fi
 }
-# --- Banner Function ---
-# This function holds the ASCII art. Define it before main().
-show_banner() {
-    if [ "$SILENT_MODE" = false ]; then
-        # The ASCII art is wrapped in single quotes to print it exactly as is.
-        echo '
- ____  _____ ____  ____  _        _____ ____  ____  _____ _____
-/  __\/  __//   _\/  _ \/ \  /|  /    //  _ \/  __\/  __//  __/
-|  \/||  \  |  /  | / \|| |\ ||  |  __\| / \||  \/|| |  _|  \  
-|    /|  /_ |  \_ | \_/|| | \||  | |   | \_/||    /| |_//|  /_ 
-\_/\_\\____\\____/\____/\_/  \|  \_/   \____/\_/\_\\____\\____\
-                                                               
-'
-    fi
-}
 
 # --- Main Execution Flow ---
 main() {
     [ "$SILENT_MODE" = false ] && clear
-    show_banner # <--- ADD THIS LINE TO CALL THE BANNER
-    
     log "Reconnaissance Script v19.0 - Consolidated & Complete Edition"
     log "Target: $TARGET | Mode: $SCAN_MODE"
     if [ "$DRY_RUN" == true ]; then log_warn "DRY RUN MODE IS ENABLED"; fi
@@ -484,5 +468,4 @@ main() {
     execute "tree \"$OUTPUT_DIR\""
 }
 
-# This final line executes the main function
 main "$@"
