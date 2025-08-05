@@ -35,10 +35,10 @@ From passive WHOIS sweeps to precision-tuned FFUF fuzzing, ReconForge is built t
 ## 📸 Screenshots
 
 ### 🔧 Terminal Output (ReconForge in Action)
-![Terminal Demo](assets/terminal_demo.png)
+![Terminal Demo](assets/terminal_demo.jpg)
 
 ### 📄 Generated Report (HTML View)
-![Report Preview](assets/report_preview.png)
+![Report Preview](assets/report_preview.jpg)
 
 ---
 
