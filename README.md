@@ -157,10 +157,11 @@ chmod +x reconforge.sh
 ### 2️⃣ Install Required Tools
 
 ```bash
-sudo apt update && sudo apt install -y \\
-  nmap rustscan ffuf whatweb jq curl whois \\
-  tree netcat telnet dig dnsutils pandoc \\
+sudo apt update && sudo apt install -y \
+  nmap rustscan ffuf whatweb jq curl whois \
+  tree netcat-openbsd telnet bind9-dnsutils pandoc \
   libxml2-utils gnupg lsof unzip
+
 ```
 
 > 🧠 **Pro tip:** Install everything inside a fresh VM or container for maximum control.
