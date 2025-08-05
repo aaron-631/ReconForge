@@ -1,16 +1,23 @@
-# 🛡️ ReconForge — Elite Network & Web Recon Toolkit
+# 🛡️ **ReconForge** — *Elite Network & Web Recon Toolkit*
 
-**Version:** 19.0 — Consolidated & Complete Edition
-**Author:** [Aaron](https://github.com/aaron-631)
-**License:** MIT
+---
+
+### 📦 Version: `v19.0` — *Consolidated & Complete Edition*  
+👤 Author: [**Aaron**](https://github.com/aaron-631)  
+📄 License: [**MIT**](https://opensource.org/licenses/MIT)
+
+---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Language-Bash-blue" alt="Bash">
+  <img src="https://img.shields.io/github/license/aaron-631/ReconForge" alt="License">
+  <img src="https://img.shields.io/badge/Status-Actively%20Maintained-brightgreen" alt="Maintained">
+  <img src="https://img.shields.io/badge/Use-CTF%20Ready-orange" alt="CTF Ready">
+  <img src="https://img.shields.io/badge/Made%20With-%E2%9D%A4-red" alt="Love">
+</p>
 
 
-![Bash](https://img.shields.io/badge/Language-Bash-blue)
-![License](https://img.shields.io/github/license/aaron-631/ReconForge)
-![Status](https://img.shields.io/badge/Status-Actively%20Maintained-brightgreen)
-![CTF Ready](https://img.shields.io/badge/Use-CTF%20Ready-orange)
-![Made With](https://img.shields.io/badge/Made%20With-%E2%9D%A4-red)
-
+</div>
 ## 📚 Table of Contents
 
 * [Overview](#-overview)
