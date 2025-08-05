@@ -9,10 +9,11 @@
 ## 📚 Table of Contents
 
 * [Overview](#-overview)
+* [Screenshots](#-screenshots)
+* [Installation](#-installation)
 * [Features at a Glance](#-features-at-a-glance)
 * [Advanced & Unique Features](#-advanced--unique-features)
 * [Output Structure](#-output-structure)
-* [Installation](#-installation)
 * [How to Use](#-how-to-use)
 * [Reporting & Logs](#-reporting--logs)
 * [Tools Integrated](#-tools-integrated)
@@ -42,6 +43,23 @@ From passive WHOIS sweeps to precision-tuned FFUF fuzzing, ReconForge is built t
 
 ---
 
+## 🧰 Installation
+
+### 1️⃣ Clone the Repo
+
+```bash
+git clone https://github.com/aaron-631/reconforge.git
+cd reconforge
+chmod +x reconforge.sh
+```
+
+### 2️⃣ Install Required Tools
+
+```bash
+sudo apt update && sudo apt install -y figlet nmap rustscan ffuf whatweb tree curl whois jq pandoc openssl
+
+
+```
 ## 🚀 Features at a Glance
 
 ### 🧭 Passive Recon
@@ -142,27 +160,7 @@ recon_results/
 │   └── scan.log
 ```
 
----
 
-## 🧰 Installation
-
-### 1️⃣ Clone the Repo
-
-```bash
-git clone https://github.com/aaron-631/reconforge.git
-cd reconforge
-chmod +x reconforge.sh
-```
-
-### 2️⃣ Install Required Tools
-
-```bash
-sudo apt update && sudo apt install -y \
-  nmap rustscan ffuf whatweb jq curl whois \
-  tree netcat-openbsd telnet bind9-dnsutils pandoc \
-  libxml2-utils gnupg lsof unzip
-
-```
 
 > 🧠 **Pro tip:** Install everything inside a fresh VM or container for maximum control.
 
