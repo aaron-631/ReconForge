@@ -2,7 +2,7 @@
 
 ---
 
-### 📦 Version: `v19.0` — *Consolidated & Complete Edition*  
+### 📦 Version: `v2.0` — *Consolidated & Complete Edition*  
 👤 Author: [**Aaron**](https://github.com/aaron-631)  
 📄 License: [**MIT**](https://opensource.org/licenses/MIT)
 
