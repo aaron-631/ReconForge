@@ -151,7 +151,7 @@ recon_results/
 ```bash
 git clone https://github.com/aaron-631/reconforge.git
 cd reconforge
-chmod +x recon.sh
+chmod +x reconforge.sh
 ```
 
 ### 2️⃣ Install Required Tools
@@ -198,16 +198,16 @@ sudo apt update && sudo apt install -y \\
 
 ```bash
 # Full recon with subdomains
-./recon.sh -d example.com -s
+./reconforge.sh -d example.com -s
 
 # Use custom wordlist for directory fuzzing
-./recon.sh -d example.com -w ~/lists/common.txt
+./reconforge.sh -d example.com -w ~/lists/common.txt
 
 # Dry-run to preview everything
-./recon.sh -d example.com --dry-run
+./reconforge.sh -d example.com --dry-run
 
 # Minimal port scan
-./recon.sh -d 192.168.0.101 -m
+./reconforge.sh -d 192.168.0.101 -m
 ```
 
 ---
@@ -244,7 +244,7 @@ Every scan generates:
 
 ```bash
 # 1. Start a recon
-./recon.sh -d target.com -s
+./reconforge.sh -d target.com -s
 
 # 2. Open the output
 cd recon_results/target.com-2025-08-05/
