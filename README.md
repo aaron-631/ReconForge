@@ -4,7 +4,12 @@
 **Author:** [Aaron](https://github.com/aaron-631)
 **License:** MIT
 
----
+
+![Bash](https://img.shields.io/badge/Language-Bash-blue)
+![License](https://img.shields.io/github/license/aaron-631/ReconForge)
+![Status](https://img.shields.io/badge/Status-Actively%20Maintained-brightgreen)
+![CTF Ready](https://img.shields.io/badge/Use-CTF%20Ready-orange)
+![Made With](https://img.shields.io/badge/Made%20With-%E2%9D%A4-red)
 
 ## 📚 Table of Contents
 
