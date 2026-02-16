@@ -308,5 +308,5 @@ Got ideas? Found a bug? Want to make it even better?
 > 🧠 **Built with discipline, curiosity, and just the right dose of caffeine.**
 
 <p align="right">
-  — Aaron • <strong>ReconForge v2.0</strong> • 2025
+  - Aaron • <strong>ReconForge v2.0</strong> • 2025
 </p>
